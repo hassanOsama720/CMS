@@ -1,0 +1,52 @@
+
+<div class="container">
+  <p-button [routerLink]="['/appointments', 'add']" label="ADD Event"></p-button>
+  <table class="table table-striped table-bordered my-3" *ngIf="appointments?.length">
+    <thead class="thead-dark">
+      <tr>
+        <th>id</th>
+        <th>doctor</th>
+        <th>patient</th>
+        <th>date</th>
+        <th>operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of appointments" appHighlight="#DFDFDF" dcolor="white">
+        <td>{{ item._id }}</td>
+        <td>{{ item.doctorId.name }}</td>
+        <td>{{ item.patientId.name }}</td>
+        <td>{{ item.time | date:'short' }}</td>
+
+        <td>
+          <div class="d-flex justify-content-evenly">
+           
+              <p-button
+                [routerLink]="['/events', 'details', item._id]"
+                label="Details"
+              >
+              </p-button>
+
+              <p-button
+                [routerLink]="['/events', 'edit', item._id]"
+                label="Edit"
+              >
+              </p-button>
+
+              <p-button
+              (click)="deleteAppointment(item._id)"
+              icon="pi pi-trash
+            "
+              label="Delete"
+            ></p-button>
+
+        
+              
+
+        
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

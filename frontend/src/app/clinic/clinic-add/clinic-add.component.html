@@ -1,0 +1,54 @@
+<div class="container d-flex align-items-center flex-column my-5 bordered">
+    <div class="m-2 col-6">
+      <div class="form-group">
+        <label for="name"> Name</label>
+         <input
+          #tname
+          class="form-control"
+          [(ngModel)]="clinic.name"
+          id="name"
+          type="text"
+          placeholder="Enter your cinick name"
+  
+        /> 
+        
+
+
+
+      <div class="form-group">
+        <label for="address"> address</label>
+        <input
+          #taddress
+          class="form-control"
+          [(ngModel)]="clinic.address"
+          id="address"
+          type="text"
+          placeholder="Enter your clinic address"
+  
+        />
+      </div>
+      <br>
+
+
+      
+      <div class="field mb-2">
+        <label for="doctor" class="block">doctor</label>
+        <select [(ngModel)]="doctorId" required name="doctor" #doctor="ngModel">
+          <option [value]="item._id" *ngFor="let item of doctors">
+            {{ item.name }}
+          </option>
+        </select>
+        <small *ngIf="doctor.errors?.['required'] && doctor.touched" id="doctor-help"
+          class="p-error block">doctor is required</small>
+      </div>
+    </div>
+
+    <button
+    class="btn btn-success my-4 col-6"
+    (click)="addClinic()"
+    *ngIf="!updateFlag"
+  >
+    Add Clinic
+  </button>
+  </div>
+  

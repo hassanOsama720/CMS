@@ -1,0 +1,66 @@
+<div class="container d-flex align-items-center flex-column my-5 bordered">
+  <div class="m-2 col-6">
+    <div class="form-group">
+      <label for="name"> Name</label>
+      <input
+        #tname
+        class="form-control"
+        [(ngModel)]="doctor.name"
+        id="name"
+        type="text"
+        placeholder="Enter your Name"
+
+      />
+    </div>
+    <div class="form-group">
+      <label for="phone" req>phone</label>
+      <input
+        #tphone
+        class="form-control"
+        [(ngModel)]="doctor.phone"
+        id="phone"
+        type="text"
+        placeholder="Enter your Phone"
+
+      />
+    </div>
+    <div class="form-group">
+      <label for="age" req>Age</label>
+      <input
+        #tage
+        class="form-control"
+        [(ngModel)]="doctor.age"
+        id="age"
+        type="text"
+        placeholder="Enter your Age"
+
+      />
+    </div>
+    <div class="form-group">
+      <label for="spec" req>Specialization </label>
+      <input
+        #tspec
+        class="form-control"
+        [(ngModel)]="doctor.spec"
+        id="spec"
+        type="text"
+        placeholder="Enter your Specialization"
+
+      />
+    </div>
+    <div class="form-group">
+      <label for="image">image</label>
+      <input
+      class="form-control"
+      type="file"
+      (input)="onFileChange($event)"
+      />
+    </div>
+  <button
+  class="btn btn-success my-4 col-6"
+  (click)="addDoctor()"
+  *ngIf="!updateFlag"
+>
+  Add Doctor
+</button>
+</div>

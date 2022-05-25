@@ -1,0 +1,150 @@
+
+<div class="mat-elevation-z8">    
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef> <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+          <input matInput type="text" (keyup)="doFilter($event)" placeholder="Filter">
+        </mat-form-field>
+      </div> </th>
+      <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="cname">
+      <th mat-header-cell *matHeaderCellDef> Comercial Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.comercial_name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="mname">
+      <th mat-header-cell *matHeaderCellDef> Medical Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.medical_name}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="manufacturer">
+      <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
+      <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="operations">
+      <th mat-header-cell *matHeaderCellDef> Operations </th>
+      <td mat-cell *matCellDef="let element">
+            <mat-icon (click)="open_update(element._id,element.comercial_name,element.medical_name,element.manufacturer,element.price,element.image,element.type,element.side_effects,element.description)" style="color: lightblue;">edit</mat-icon>
+            <mat-icon (click)="show_info(element._id,element.comercial_name,element.medical_name,element.manufacturer,element.price,element.image,element.type,element.side_effects,element.description)" style="color: green;" id="more">menu</mat-icon>
+            <mat-icon style="color: red;" (click)="delete_one(element._id)">delete</mat-icon>
+     </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
+
+
+<div class="add" [style.display]="add_display">
+    <button (click)="add_close()" class="add-close" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+        <mat-icon>close</mat-icon>
+      </button>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Comercial Name</mat-label>
+        <input [(ngModel)]="medicine_add.comercial_name" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Medical Name</mat-label>
+        <input [(ngModel)]="medicine_add.medical_name" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Price</mat-label>
+        <input [(ngModel)]="medicine_add.price" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Image</mat-label>
+        <input [(ngModel)]="medicine_add.image" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Manufacturer</mat-label>
+        <input [(ngModel)]="medicine_add.manufacturer" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Type</mat-label>
+        <input [(ngModel)]="medicine_add.type" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Description</mat-label>
+        <input [(ngModel)]="medicine_add.description" matInput>
+    </mat-form-field>
+    <mat-form-field class="new" appearance="fill">
+        <mat-label>Side Effects</mat-label>
+        <input [(ngModel)]="medicine_add.side_effects" matInput>
+    </mat-form-field>
+    <button (click)="add_new()" class="add_save" mat-raised-button color="primary">Save</button>
+    <button (click)="update_one()" class="add_save" mat-raised-button color="primary">Update</button>
+</div> 
+
+
+
+
+<div class="detailes" [style.display]="info_display">
+    <button (click)="info_close()" class="add-close" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+        <mat-icon>close</mat-icon>
+      </button>
+    <div class="inf">
+        <div class="card">
+            <h1>Comercial Name : </h1>
+            <h2>{{info.comercial_name}}</h2>
+        </div>
+        <div class="card">
+            <h1>Medical Name : </h1>
+            <h2>{{info.medical_name}}</h2>
+        </div>
+        <div class="card">
+            <h1>price : </h1>
+            <h2>{{info.price}}</h2>
+        </div>
+        <div class="card">
+            <h1>Manufacturer : </h1>
+            <h2>{{info.manufacturer}}</h2>
+        </div>
+        <div class="card">
+            <h1>Type : </h1>
+            <h2>{{info.type}}</h2>
+        </div>
+        <div class="card">
+            <h1>Side Effects : </h1>
+            <h2>{{info.side_effects}}</h2>
+        </div>
+        <div class="card">
+            <h1>Description : </h1>
+            <h2>{{info.description}}</h2>
+        </div>
+        
+    </div>
+    <div class="img">
+        <img src={{info.image}} alt="">
+    </div>
+</div>
+
+
+<button (click)="add_open()" class="add-button" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+    <mat-icon>add</mat-icon>
+  </button>
+  

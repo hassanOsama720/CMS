@@ -1,0 +1,82 @@
+<p-dialog header="Update Doctor" [(visible)]="display" >
+  <div class="grid p-fluid">
+    <div class="col-12 md:col-4">
+      <div class="p-inputgroup mb-3">
+        Name  :
+        <input
+          [(ngModel)]="doctor.name"
+          (ngModelChange)="(doctor?.name)"
+
+          type="text"
+          pInputText
+          placeholder="name"
+        />
+      </div>
+
+      <div class="p-inputgroup mb-3">
+        phone  :
+        <input
+          [(ngModel)]="doctor.phone"
+          (ngModelChange)="(doctor?.phone)"
+          type="text"
+          pInputText
+          placeholder="phone"
+        />
+      </div>
+      <div class="p-inputgroup mb-3">
+        Age  :
+        <input
+          [(ngModel)]="doctor.age"
+          (ngModelChange)="(doctor?.age)"
+          type="text"
+          pInputText
+          placeholder="age"
+        />
+      </div>
+
+      <div class="p-inputgroup mb-3">
+        image  :
+        <input
+          [(ngModel)]="doctor.image"
+          (ngModelChange)="(doctor?.image)"
+          type="text"
+          pInputText
+          placeholder="image"
+        />
+      </div>
+
+      <div class="p-inputgroup mb-3">
+
+          specialization  :
+        <input
+          type="text"
+          pInputText
+          placeholder="spec"
+          [(ngModel)]="doctor.spec"
+          (ngModelChange)="(doctor?.spec)"
+
+
+        />
+      </div>
+
+      <p-button
+        label="Update"
+        (click)="updateDoctor()"
+      ></p-button>
+    </div>
+  </div>
+</p-dialog>
+
+<div class="d-flex justify-content-evenly">
+  <!-- <p-button
+  (click)="editSpeaker()"
+  icon="pi pi-user-edit"
+  label="Edit"
+></p-button> -->
+  <button
+    class="btn btn-warning -100 mx-2"
+    (click)="editDoctor()"
+  >
+    update
+  </button>
+

@@ -1,0 +1,61 @@
+
+ <!-- Table for Patient Data -->
+
+ <div class="container-fluid">
+
+  <table class="table table-dark table-striped"  *ngIf="patient?.length">
+    <thead class="table-dark">
+      <tr>
+        <td>
+          <a class="btn btn-primary col-12 " [routerLink]="['/patients','add']">
+            Add Patient
+            </a>
+        </td><td></td>
+        <td></td>
+        <td>
+          <button
+          class="btn btn-outline-warning col-12"
+          (click)="load()"
+        >
+          load
+        </button>
+        </td><td></td><td></td><td></td><td></td>
+      </tr>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th> status</th>
+        <th >Mobile Number</th>
+        <th >Age</th>
+        <th>Gender</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody class="table-success">
+      <tr
+        *ngFor="let item of patient ">
+        <td>{{ item._id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.address }}</td>
+        <td >{{ item.isMarried?"Married":"Single"}}</td>
+        <td >{{ item.phoneNumber }}</td>
+        <td >{{ item.age  }}</td>
+        <td >{{ item.gender }}</td>
+
+
+        <td>
+          <div class="d-flex justify-content-evenly">
+            <button type="button" class="btn btn-danger"label="Delete" (click)="deletePatient(item._id)" >delete</button>
+
+            <app-patient-edit [id]="item._id"></app-patient-edit>
+            <app-patient-details [id]="item._id" ></app-patient-details>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<br>

@@ -1,0 +1,100 @@
+<div class="container d-flex justify-content-center mt-5">
+  <p-card header="Add an Appointment" [style]="{ width: '360px' }" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+
+    </ng-template>
+
+    <form #signin="ngForm" (submit)="save()">
+
+      <!-- <div class="field mb-2">
+            <label for="doctor" class="block">doctor</label>
+            <input id="doctor" type="text" aria-describedby="title-help" name="doctor" #doctor="ngModel" pInputText  [(ngModel)]="doctorId" required/>
+            <small  *ngIf="doctor.errors?.['required'] && doctor.touched " id="username-help" class="p-error block">doctorId is required</small>
+        </div> -->
+      <div class="field mb-2">
+        <label for="mainspeaker" class="block">doctor</label>
+        <select class="form-select"  [(ngModel)]="doctorId" required name="mainspeaker" #mainspeaker="ngModel">
+          <option [value]="item._id" *ngFor="let item of doctors">
+            {{ item.name }}
+          </option>
+        </select>
+        <small *ngIf="mainspeaker.errors?.['required'] && mainspeaker.touched" id="mainspeaker-help"
+          class="p-error block">doctor is required</small>
+      </div>
+
+      <div class="field mb-2">
+        <label for="mainspeaker" class="block">patient</label>
+        <select class="form-select"  [(ngModel)]="patientId" required name="mainspeaker" #mainspeaker="ngModel">
+          <option [value]="item._id" *ngFor="let item of patients">
+            {{ item.name }}
+          </option>
+        </select>
+        <small *ngIf="mainspeaker.errors?.['required'] && mainspeaker.touched" id="mainspeaker-help"
+          class="p-error block">patient is required</small>
+      </div>
+     
+      <div class="field mb-2">
+        <label for="time" class="block">time</label>
+        <br>
+        <input id="time" type="datetime-local" aria-describedby="time-help" name="time" #_time="ngModel" pInputText
+          [(ngModel)]="time" required />
+        <small *ngIf="_time.errors?.['required'] && _time.touched " id="username-help" class="p-error block">time is
+          required</small>
+      </div>
+
+      <!-- <p-dropdown [options]="doctors" [(ngModel)]="doctorId" placeholder="Select a doctor" optionLabel="name" optionValue="_id" [showClear]="true"></p-dropdown> -->
+      <!-- <p-dropdown [options]="patients" [(ngModel)]="patientId" placeholder="Select a patient" optionLabel="name" optionValue="spec" [showClear]="true"></p-dropdown> -->
+
+      <!-- <div class="field mb-2">
+        <label for="patient" class="block">patient</label>
+        <input id="patient" type="text" aria-describedby="title-help" name="patient" #patient="ngModel" pInputText
+          [(ngModel)]="patientId" required />
+        <small *ngIf="patient.errors?.['required'] && patient.touched " id="username-help"
+          class="p-error block">patientId is required</small>
+      </div> -->
+
+    
+
+      <!-- <div class="field mb-2">
+            <label for="title" class="block">title</label>
+            <input id="title" type="text" aria-describedby="title-help" name="title" #title="ngModel" pInputText  [(ngModel)]="patientId" required/>
+            <small  *ngIf="title.errors?.['required'] && title.touched " id="username-help" class="p-error block">patientId is required</small>
+        </div> -->
+
+
+      <!-- <div class="field mb-2">
+              <label for="patientId" class="block">patientId</label>
+              <input id="patientId" type="text" aria-describedby="title-help" name="patientId" #patientId="ngModel" pInputText  [(ngModel)]="patientId" required/>
+              <small  *ngIf="patientId.errors?.['required'] && patientId.touched " id="username-help" class="p-error block">patientId is required</small>
+          </div> -->
+
+      <!-- <div class="field mb-2">
+              <label for="doctorId" class="block">doctorId</label>
+              <input id="doctorId" type="text" aria-describedby="doctorId-help" name="doctorId" #doctorId="ngModel" pInputText  [(ngModel)]="doctorId" required/>
+              <small  *ngIf="doctorId.errors?.['required'] && doctorId.touched" id="doctorId-help" class="p-error block">doctorId is required</small>
+          </div>
+   -->
+      <!-- <div class="field mb-2">
+              <label for="mainspeaker" class="block">mainspeaker</label>
+              <select
+              [(ngModel)]="event.mainspeaker"
+              required
+              name="mainspeaker"
+              #mainspeaker="ngModel"
+            >
+              <option [value]="item._id" *ngFor="let item of speakers">
+                {{ item.name }}
+              </option>
+            </select>
+              <small  *ngIf="mainspeaker.errors?.['required'] && mainspeaker.touched" id="mainspeaker-help" class="p-error block">mainspeaker is required</small>
+          </div> -->
+
+
+      <p-button type="submit" label="Add Appointment" icon="pi pi-sign-in"></p-button>
+
+
+    </form>
+
+
+  </p-card>
+</div>

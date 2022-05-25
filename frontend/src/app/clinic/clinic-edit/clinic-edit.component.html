@@ -1,0 +1,69 @@
+<p-dialog header="Update clinic" [(visible)]="display" >
+    <div class="grid p-fluid">
+      <div class="col-12 md:col-4">
+        <div class="p-inputgroup mb-3">
+          Name  :
+          <input
+            [(ngModel)]="clinic.name"
+            (ngModelChange)="(clinic?.name)"
+  
+            type="text"
+            pInputText
+            placeholder="name"
+          />
+        </div>
+  
+        <div class="p-inputgroup mb-3">
+          address  :
+          <input
+            [(ngModel)]="clinic.address"
+            (ngModelChange)="(clinic?.address)"
+            type="text"
+            pInputText
+            placeholder="address"
+          />
+        </div>
+<!--         <div class="p-inputgroup mb-3">
+          doctor  :
+          <input
+            [(ngModel)]="clinic.doctor"
+            (ngModelChange)="(clinic?.doctor)"
+            type="text"
+            pInputText
+            placeholder="doctor"
+          />
+        </div> -->
+        <div class="field mb-2">
+          <label for="doctor" class="block">doctor</label>
+          <select [(ngModel)]="doctorId" required name="doctor" #doctor="ngModel">
+            <option [value]="item._id" *ngFor="let item of doctors">
+              {{ item.name }}
+            </option>
+          </select>
+          <small *ngIf="doctor.errors?.['required'] && doctor.touched" id="doctor-help"
+            class="p-error block">doctor is required</small>
+        </div>
+      </div>
+       
+  
+        <p-button
+          label="Update"
+          (click)="updateClinic()"
+        ></p-button>
+      </div>
+  </p-dialog>
+  
+  <div class="d-flex justify-content-evenly">
+    <!-- <p-button
+    (click)="editSpeaker()"
+    icon="pi pi-user-edit"
+    label="Edit"
+  ></p-button> -->
+    <button
+      class="btn btn-success w-100 mx-2"
+      (click)="editClinic()"
+    >
+      update
+    </button>
+  
+  

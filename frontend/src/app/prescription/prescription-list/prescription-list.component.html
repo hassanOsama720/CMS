@@ -1,0 +1,174 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <!-- Position Column -->
+  <ng-container matColumnDef="ID">
+    <th mat-header-cell *matHeaderCellDef>
+      <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+          <input
+            matInput
+            type="text"
+            (keyup)="doFilter($event)"
+            placeholder="Filter"
+          />
+        </mat-form-field>
+      </div>
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="doctor">
+    <th mat-header-cell *matHeaderCellDef>Doctor Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.doctor.name }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="patient">
+    <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.patient.name }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <!-- <ng-container matColumnDef="medicine">
+    <th mat-header-cell *matHeaderCellDef>Medecine</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.medicine.medical_name }}
+    </td>
+  </ng-container> -->
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let element">{{ element.date| date:'short'  }}</td>
+  </ng-container>
+  <!-- Symbol Column -->
+  >
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="operations">
+    <th mat-header-cell *matHeaderCellDef>Operations</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon
+        (click)="
+          open_update(
+            element._id,
+            element.doctor.name,
+            element.patient.name,
+            element.medicine.medical_name,
+            element.date,
+            element.doctor._id,
+            element.patient._id,
+            element.medicine[0]._id
+          )
+        "
+        style="color: lightblue"
+        >edit</mat-icon
+      >
+      <mat-icon
+        (click)="
+          show_info(
+            element._id,
+            element.doctor.name,
+            element.patient.name,
+            element.medicine,
+            element.date
+          )
+        "
+        style="color: green"
+        id="more"
+        >menu</mat-icon
+      >
+      <mat-icon style="color: red" (click)="delete_one(element._id)"
+        >delete</mat-icon
+      >
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<!-- Add -->
+<div class="add" [style.display]="add_display">
+  <button
+    (click)="add_close()"
+    class="add-close"
+    mat-mini-fab
+    color="warn"
+    aria-label="Example icon button with a delete icon"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <mat-form-field class="new" appearance="fill">
+    <mat-label>Doctor Name</mat-label>
+    <input [(ngModel)]="prescription_add.doctor" matInput />
+  </mat-form-field>
+  <mat-form-field class="new" appearance="fill">
+    <mat-label>Patient Name</mat-label>
+    <input [(ngModel)]="prescription_add.patient" matInput />
+  </mat-form-field>
+  <mat-form-field class="new" appearance="fill">
+    <mat-label>Medicine</mat-label>
+    <input [(ngModel)]="prescription_add.medicine" matInput />
+  </mat-form-field>
+  <mat-form-field class="new" appearance="fill">
+    <mat-label>Date</mat-label>
+    <input [(ngModel)]="prescription_add.date  " matInput />
+  </mat-form-field>
+
+  <button
+    (click)="add_new()"
+    class="add_save"
+    mat-raised-button
+    color="primary"
+  >
+    Save
+  </button>
+  <button
+    (click)="update_one()"
+    class="add_save"
+    mat-raised-button
+    color="primary"
+  >
+    Update
+  </button>
+</div>
+
+<!-- Details -->
+<div class="detailes" [style.display]="info_display">
+  <button
+    (click)="info_close()"
+    class="add-close"
+    mat-mini-fab
+    color="warn"
+    aria-label="Example icon button with a delete icon"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  <div class="inf">
+    <div class="card">
+      <h1>Doctor Name :</h1>
+      <h2>{{ info.doctor }}</h2>
+    </div>
+    <div class="card">
+      <h1>Patient Name :</h1>
+      <h2>{{ info.patient }}</h2>
+    </div>
+
+    <div class="card">
+      <h1>Date :</h1>
+      <h2>{{ info.date | date:'short' }}</h2>
+    </div>
+  </div>
+  <div class=" ">
+    <h2  *ngFor="let element of info.medicine">{{ element.medical_name }}</h2>
+  </div>
+</div>
+
+<button
+  (click)="add_open()"
+  class="add-button"
+  mat-fab
+  color="primary"
+  aria-label="Example icon button with a delete icon"
+>
+  <mat-icon>add</mat-icon>
+</button>

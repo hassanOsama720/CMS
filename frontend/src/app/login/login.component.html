@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-center mt-5">
+
+    <p-card header="login" [style]="{width: '360px'}" styleClass="p-card-shadow">
+        <ng-template pTemplate="header">
+         
+        </ng-template>
+
+        <form  #signin="ngForm" (submit)="login()">
+
+            <div class="field mb-2">
+                <label for="username" class="block">Username</label>
+                <br>
+                <input id="username" pInputText  type="username" aria-describedby="username-help" name="username" #username="ngModel" pInputText  [(ngModel)]="user.username" required/>
+                <small  *ngIf="username.errors?.['required'] && username.touched " id="username-help" class="p-error block">username is required</small>
+            </div>
+
+            <div class="field mb-2">
+                <label for="password" class="block">password</label>
+                <br>
+                <input id="password"  pInputText type="password" aria-describedby="password-help" name="password" #password="ngModel" pInputText  [(ngModel)]="user.password" required/>
+                <small  *ngIf="password.errors?.['required'] && password.touched" id="username-help" class="p-error block">password is required</small>
+            </div>
+               
+            <p-button type="submit" label="Login" icon="pi pi-sign-in"></p-button>
+      
+
+        </form>
+     
+
+   
+    </p-card>
+  
+</div>

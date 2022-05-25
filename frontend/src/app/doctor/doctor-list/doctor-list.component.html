@@ -1,0 +1,82 @@
+<!-- Table for Doctors Data -->
+
+<div class="container-fluid">
+
+  <table class="table table-dark table-striped"  *ngIf="doctors?.length">
+    <thead class="table-dark">
+      <tr>
+        <td><h3>Search For doctors</h3>
+          <input class="col-12 p-0" type="text" name="" id="" [(ngModel)]="query" />
+        </td>
+
+        <td>
+          <a class="btn btn-primary col-12 " [routerLink]="['/doctors','add']">
+            Add New doctor
+            </a>
+        </td><td></td>
+        <td><button
+          class="btn btn-outline-warning col-12"
+          (click)="toggleImage($event.target)"
+        >
+          Hide Image
+        </button></td>
+        <td>
+          <button
+          class="btn btn-outline-warning col-12"
+          (click)="load()"
+        >
+          Refresh
+        </button>
+        </td><td></td><td></td>
+      </tr>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>specialization</th>
+        <th>phone</th>
+        <th *ngIf="showAndHideImage">image</th>
+        <th>operations</th>
+      </tr>
+    </thead>
+    <tbody class="table-success">
+      <tr
+        *ngFor="
+        let item of doctors | arraySplice: query"
+        appHighlight="#DFDFDF"
+        dcolor="white"
+      >
+        <td>{{ item._id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.age }}</td>
+        <td>{{ item.spec }}</td>
+        <td>{{ item.phone }}</td>
+        <td *ngIf="showAndHideImage">
+          <img src="{{ item.image }}" [title]="item.image" width="80px" height="40px" />
+        </td>
+
+        <td>
+          <div class="d-flex justify-content-evenly">
+            <button
+              class="btn btn-danger "
+              (click)="deleteDoctor(item._id)"
+
+            >
+              Delete
+            </button>
+            <!-- <p-button
+            (click)="deleteDoctor(item._id)"
+            icon="pi pi-trash
+          "
+            label="Delete"
+          ></p-button> -->
+            <app-doctor-edit [id]="item._id"></app-doctor-edit>
+            <app-doctor-details [id]="item._id" ></app-doctor-details>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<br>

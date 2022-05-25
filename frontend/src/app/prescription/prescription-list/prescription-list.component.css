@@ -1,0 +1,106 @@
+table {
+  width: 100%;
+  margin-top: 80px;
+}
+th {
+  font-size: 20px;
+  font-weight: bold;
+}
+td {
+  width: 10%;
+}
+.mat-row .mat-cell {
+  border-bottom: 1px solid #eee;
+  border-top: 1px solid transparent;
+}
+.mat-row:hover .mat-cell {
+  border-color: black;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+#more {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.add {
+  transition-duration: 1s;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 60%;
+  position: fixed;
+  top: 100px;
+  transform: translatex(30%);
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  box-shadow: 1px 2px 20px 20px #e5dddd;
+}
+.add-close {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+.add .add_save {
+  width: 30%;
+}
+.add .new {
+  width: 40%;
+}
+.add-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.detailes {
+  width: 60%;
+  position: fixed;
+  top: 100px;
+  transform: translatex(30%);
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  padding-top: 50px;
+  padding-bottom: 40px;
+  box-shadow: 1px 2px 20px 20px #e5dddd;
+  height: 400px;
+}
+.detailes .inf {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 60%;
+  display: inline-block;
+  transform: rotateY(180deg);
+  padding-right: 20px;
+}
+.detailes .img {
+  display: inline-block;
+  align-items: center;
+  width: 40%;
+}
+.detailes .img img {
+  transform: translateY(50%);
+  padding-left: 30px;
+  width: 250px;
+  height: 200px;
+}
+.card {
+  margin: 5px;
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  width: 100%;
+  display: inline-block;
+  transform: rotateY(-180deg);
+}
+.card h2 {
+  color: #999;
+  display: inline-block;
+}
+.card h1 {
+  display: inline-block;
+}
